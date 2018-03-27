@@ -1,0 +1,28 @@
+{
+  "extends": ["standard", "standard-react"],
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "ecmaFeatures": {
+      "classes": true,
+      "modules": true,
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    },
+    "sourceType": "module"
+  },
+  "rules": {
+    "import/no-webpack-loader-syntax": 0,
+    "require-await": 1,
+    "react/no-unused-prop-types": 1,
+    "react/jsx-no-bind": 1,
+    "camelcase": 1
+  }
+}
