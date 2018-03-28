@@ -5,13 +5,12 @@ import serialize from 'serialize-javascript'
 
 import React from 'react'
 import ReactDOM from 'react-dom/server'
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import { Route } from 'react-router-dom'
 import Helmet from 'react-helmet'
 
-import { reducers, enhancers, history } from '../../src/store'
+import createStore from '../../src/store'
 import App from '../../src/views/App'
 
 const prepHTML = (data, { html, head, body, state }) => {
@@ -41,13 +40,13 @@ const universalLoader = (req, res) => {
     }
 
     // Create a store and sense of history based on the current path
-    const store = createStore(reducers, enhancers)
+    const { store, history } = createStore({}, { path: req.url })
     const context = {}
 
     // Render App in React
     const body = ReactDOM.renderToString(
       <Provider store={store}>
-        <ConnectedRouter history={history} location={req.url} context={context}>
+        <ConnectedRouter history={history} context={context}>
           <Route component={App} />
         </ConnectedRouter>
       </Provider>
